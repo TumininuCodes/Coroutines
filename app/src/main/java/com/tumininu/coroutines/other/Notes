@@ -1,0 +1,19 @@
+So coroutines is the recommended way of managing background threads that can simplify code by
+reducing the need for callbacks. Corountines are a kotlin feature that converts async callbacks for
+long-running tasks, such as database or network access, into sequential code
+
+// Async callbacks
+networkRequest { result ->
+   // Successful network request
+   databaseSave(result) { rows ->
+     // Result saved
+   }
+}
+
+The callback-based code will be converted to sequential code using coroutines
+
+// The same code with coroutines
+val result = networkRequest()
+// Successful network request
+databaseSave(result)
+// Result saved
